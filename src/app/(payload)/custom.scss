@@ -1,0 +1,1101 @@
+/*
+ * KSS CMS tema. Boje dolaze iz globala "Izgled admina" (ThemeStyle ubacuje --kss-* promenljive);
+ * ovde su samo podrazumevane vrednosti i stilovi. Selektori ciljaju Payload klase (BEM).
+ */
+:root {
+  --kss-primary: #002047;
+  --kss-primary-contrast: #ffffff;
+  --kss-accent: #bb1b2b;
+  --kss-accent-contrast: #ffffff;
+  --kss-sidebar-bg: #111822;
+  --kss-sidebar-fg: #ffffff;
+  --kss-bg: #f2f3f6;
+  --kss-radius: 6px;
+  --kss-radius-l: 12px;
+  --kss-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --kss-border: #e4e7ec;
+}
+
+html {
+  --font-body: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html[data-theme='light'] {
+  --theme-bg: var(--kss-bg);
+  --theme-input-bg: #ffffff;
+  --style-radius-s: var(--kss-radius);
+  --style-radius-m: var(--kss-radius);
+  --style-radius-l: var(--kss-radius-l);
+  --accessibility-outline: 2px solid var(--kss-primary);
+}
+
+/* ------------------------------------------------------------------ opšte */
+.template-default__wrap {
+  background: var(--kss-bg);
+}
+
+.field-label,
+.field-type label {
+  font-weight: 600;
+}
+
+/* dugmad */
+.btn--style-primary {
+  background: var(--kss-primary);
+  color: var(--kss-primary-contrast);
+  border-radius: var(--kss-radius);
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--kss-primary) 85%, #000);
+  }
+}
+.btn--style-secondary {
+  border-radius: var(--kss-radius);
+  color: var(--kss-primary);
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--kss-primary) 8%, transparent);
+  }
+}
+.btn--style-pill {
+  border-radius: 999px;
+}
+.list-create-new-doc__create-new-button,
+.list-header__title-actions .btn--style-pill {
+  background: var(--kss-primary);
+  color: var(--kss-primary-contrast);
+  &:hover {
+    background: color-mix(in srgb, var(--kss-primary) 85%, #000);
+  }
+}
+
+a {
+  --link: var(--kss-primary);
+}
+
+/* ------------------------------------------------------------------ bočni meni */
+.nav {
+  background: var(--kss-sidebar-bg);
+  color: var(--kss-sidebar-fg);
+  border-right: 1px solid color-mix(in srgb, var(--kss-sidebar-fg) 10%, transparent);
+
+  .nav__header,
+  .nav__controls,
+  .nav__scroll {
+    color: inherit;
+  }
+
+  .nav-group__label,
+  .nav-group__toggle {
+    color: color-mix(in srgb, var(--kss-sidebar-fg) 55%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .nav__link {
+    color: color-mix(in srgb, var(--kss-sidebar-fg) 86%, transparent);
+    border-radius: var(--kss-radius);
+    padding: 7px 12px;
+    margin-bottom: 2px;
+    position: relative;
+    transition: background 0.12s;
+
+    &:hover {
+      background: color-mix(in srgb, var(--kss-sidebar-fg) 10%, transparent);
+      color: var(--kss-sidebar-fg);
+    }
+  }
+
+  .nav__link.active,
+  .nav__link[aria-current='page'] {
+    background: color-mix(in srgb, var(--kss-sidebar-fg) 14%, transparent);
+    color: var(--kss-sidebar-fg);
+    font-weight: 600;
+  }
+
+  .nav__link-indicator {
+    background: var(--kss-accent);
+    width: 3px;
+    border-radius: 3px;
+  }
+
+  .nav__log-out,
+  .nav__mobile-close {
+    color: inherit;
+  }
+
+  svg {
+    color: inherit;
+  }
+
+  .field-label,
+  label {
+    color: color-mix(in srgb, var(--kss-sidebar-fg) 70%, transparent);
+  }
+}
+
+.nav__toggler-wrapper,
+.nav-toggler,
+.template-default__nav-toggler {
+  color: inherit;
+}
+
+/* ------------------------------------------------------------------ gornja traka */
+.app-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--kss-border);
+}
+.app-header__bg {
+  background: #ffffff;
+}
+
+/* ------------------------------------------------------------------ liste */
+.list-header {
+  padding-top: calc(var(--base) * 0.8);
+}
+.search-filter__input {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.list-header__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.list-controls,
+.search-bar {
+  background: #ffffff;
+  border: 1px solid var(--kss-border);
+  border-radius: var(--kss-radius-l);
+  box-shadow: var(--kss-shadow);
+}
+
+.table-wrap,
+.table {
+  --table-bg: #ffffff;
+}
+.table-wrap {
+  background: #ffffff;
+  border: 1px solid var(--kss-border);
+  border-radius: var(--kss-radius-l);
+  box-shadow: var(--kss-shadow);
+  overflow: hidden;
+  padding: 0;
+}
+.table {
+  thead th {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+    font-weight: 700;
+    color: #667085;
+    background: #f9fafb;
+    border-bottom: 1px solid var(--kss-border);
+  }
+  tbody tr {
+    background: #ffffff !important;
+    &:hover {
+      background: color-mix(in srgb, var(--kss-primary) 4%, #fff) !important;
+    }
+  }
+  tbody td {
+    border-bottom: 1px solid #f0f2f5;
+  }
+  a {
+    color: var(--kss-primary);
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.pill--style-light {
+  background: color-mix(in srgb, var(--kss-primary) 8%, #fff);
+  color: var(--kss-primary);
+}
+.pill-selector__pill--selected {
+  background: var(--kss-primary);
+  color: var(--kss-primary-contrast);
+}
+
+/* ------------------------------------------------------------------ uređivanje dokumenta */
+.document-fields__main,
+.document-fields__sidebar-wrap {
+  background: #ffffff;
+  border: 1px solid var(--kss-border);
+  border-radius: var(--kss-radius-l);
+  box-shadow: var(--kss-shadow);
+}
+.doc-controls {
+  background: #ffffff;
+  border-bottom: 1px solid var(--kss-border);
+}
+.doc-header__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='search'],
+textarea,
+.rs__control {
+  border-radius: var(--kss-radius);
+  border: 1px solid #d0d5dd;
+  &:focus,
+  &:focus-within {
+    border-color: var(--kss-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--kss-primary) 15%, transparent);
+    outline: none;
+  }
+}
+
+/* ------------------------------------------------------------------ logo */
+.kss-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  &__text {
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    strong {
+      color: var(--kss-accent);
+    }
+  }
+}
+.kss-icon {
+  height: 28px;
+  width: auto;
+}
+
+/* ------------------------------------------------------------------ početna strana */
+.kss-dash {
+  padding-top: calc(var(--base) * 1.1);
+  padding-bottom: calc(var(--base) * 3);
+  max-width: 1360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kss-muted {
+  color: #667085;
+  margin: 8px 0 0;
+}
+
+/* baner */
+.kss-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr minmax(160px, 260px);
+  align-items: center;
+  gap: 16px;
+  padding: 32px 36px;
+  border-radius: var(--kss-radius-l);
+  color: var(--kss-primary-contrast);
+  background: linear-gradient(120deg, var(--kss-primary), color-mix(in srgb, var(--kss-primary) 62%, #000));
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--kss-primary) 25%, transparent);
+
+  h1 {
+    margin: 14px 0 6px;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: inherit;
+  }
+  p {
+    margin: 0;
+    max-width: 640px;
+    opacity: 0.85;
+    font-size: 14px;
+    line-height: 1.55;
+    color: inherit;
+  }
+  &__scope {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px 5px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 12px;
+    font-weight: 600;
+    i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--site);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+    }
+    em {
+      font-style: normal;
+      opacity: 0.7;
+      font-weight: 500;
+    }
+  }
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: var(--kss-radius);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.12s;
+    &:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+  }
+  &__art {
+    width: 100%;
+    height: auto;
+    justify-self: end;
+    .a {
+      fill: var(--kss-accent);
+      opacity: 0.92;
+    }
+    .b {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.35);
+      stroke-width: 2;
+    }
+    .c {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.6);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+  }
+}
+
+/* KPI */
+.kss-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+.kss-kpi {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid var(--kss-border);
+  border-radius: var(--kss-radius-l);
+  box-shadow: var(--kss-shadow);
+  color: inherit;
+  text-decoration: none;
+  small {
+    display: block;
+    color: #667085;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  b {
+    display: block;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #101828;
+  }
+  em {
+    font-style: normal;
+    font-size: 12px;
+    color: #667085;
+    &.is-up {
+      color: #067647;
+    }
+    &.is-down {
+      color: #b42318;
+    }
+  }
+  &__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--kss-primary) 10%, #fff);
+    color: var(--kss-primary);
+    &--amber {
+      background: #fef3c7;
+      color: #b45309;
+    }
+    &--green {
+      background: #d1fadf;
+      color: #067647;
+    }
+    &--violet {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+  }
+}
+a.kss-kpi:hover {
+  border-color: var(--kss-primary);
+}
+
+/* mreža i kartice */
+.kss-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: start;
+  &--b {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+@media (max-width: 1100px) {
+  .kss-grid,
+  .kss-grid--b,
+  .kss-hero {
+    grid-template-columns: 1fr;
+  }
+  .kss-hero__art {
+    display: none;
+  }
+}
+.kss-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.kss-card {
+  background: #fff;
+  border: 1px solid var(--kss-border);
+  border-radius: var(--kss-radius-l);
+  box-shadow: var(--kss-shadow);
+  padding: 20px 22px 18px;
+
+  > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    h2 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #101828;
+    }
+  }
+  h3 {
+    margin: 14px 0 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #98a2b3;
+    font-weight: 700;
+  }
+  &__foot {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f2f5;
+    color: #667085;
+    font-size: 12px;
+  }
+}
+
+/* grafikoni */
+.kss-chart {
+  width: 100%;
+  height: auto;
+  &__grid {
+    stroke: #eef0f4;
+    stroke-width: 1;
+  }
+  &__tick {
+    fill: #98a2b3;
+    font-size: 11px;
+  }
+  &__bar {
+    transition: opacity 0.12s;
+    &:hover {
+      opacity: 0.8;
+    }
+    &--news {
+      fill: var(--kss-primary);
+    }
+    &--reports {
+      fill: var(--kss-accent);
+    }
+  }
+}
+.kss-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #667085;
+  i {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-left: 10px;
+    &.news {
+      background: var(--kss-primary);
+    }
+    &.reports {
+      background: var(--kss-accent);
+    }
+  }
+}
+.kss-donut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  &__svg {
+    width: 150px;
+    height: 150px;
+  }
+  &__num {
+    font-size: 22px;
+    font-weight: 700;
+    fill: #101828;
+  }
+  &__cap {
+    font-size: 9px;
+    fill: #98a2b3;
+  }
+  &__legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: grid;
+    gap: 6px;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #475467;
+      span {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+      }
+      b {
+        margin-left: auto;
+        color: #101828;
+      }
+    }
+  }
+}
+
+/* aktivnost */
+.kss-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid #f0f2f5;
+    &:last-child {
+      border-bottom: 0;
+    }
+    div {
+      min-width: 0;
+      flex: 1;
+    }
+    a {
+      display: block;
+      font-weight: 600;
+      color: #101828;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:hover {
+        color: var(--kss-primary);
+      }
+    }
+    small {
+      color: #667085;
+      font-size: 12px;
+    }
+  }
+  &__dot {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+}
+.kss-badge {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* za doradu */
+.kss-todo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--kss-radius);
+    border: 1px solid #f0f2f5;
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      border-color: var(--kss-primary);
+      background: color-mix(in srgb, var(--kss-primary) 4%, #fff);
+    }
+    b {
+      margin-left: auto;
+      font-size: 15px;
+      color: #101828;
+    }
+  }
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 10px;
+    background: #fef3c7;
+    color: #b45309;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    strong {
+      font-size: 13px;
+    }
+    small {
+      color: #667085;
+      font-size: 12px;
+    }
+  }
+}
+
+/* utakmice */
+.kss-matches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kss-match {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f2f5;
+  &:last-child {
+    border-bottom: 0;
+  }
+  &__league {
+    font-size: 11px;
+    color: #98a2b3;
+    font-weight: 600;
+  }
+  &__teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    > span:first-child {
+      text-align: right;
+    }
+  }
+  &__score {
+    padding: 2px 10px;
+    border-radius: 6px;
+    background: #101828;
+    color: #fff;
+    font-size: 12px;
+  }
+  &__time {
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: #f2f4f7;
+    color: #475467;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}
+.kss-live {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: #fee4e2;
+  color: #b42318;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.kss-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  &.is-ok {
+    background: #12b76a;
+  }
+  &.is-bad {
+    background: #f04438;
+  }
+}
+
+/* ------------------------------------------------------------------ meni: logo + izbor sajta */
+/* gornji prazan red menija (rezervisan za dugme) skraćujemo; dugme ide u red sa logom */
+.nav .nav__scroll {
+  padding-top: 12px;
+}
+
+/* dugme za skupljanje menija: u redu sa logom, desno, bez okvira */
+.nav-toggler.nav-toggler--is-open {
+  transform: translate(calc(var(--nav-width) - 62px), 22px);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  border-radius: var(--kss-radius);
+  color: color-mix(in srgb, var(--kss-sidebar-fg) 65%, transparent);
+  transition: background 0.12s, color 0.12s;
+  &:hover {
+    background: color-mix(in srgb, var(--kss-sidebar-fg) 12%, transparent);
+    color: var(--kss-sidebar-fg);
+  }
+  .hamburger,
+  .hamburger__close-icon {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: inherit;
+  }
+  .icon,
+  .icon .stroke,
+  .icon path {
+    color: inherit;
+    stroke: currentColor;
+  }
+}
+.nav .tenant-selector,
+.nav .tenant-selector__wrap,
+.nav [class*='tenantSelector'] {
+  display: none;
+}
+.kss-navtop {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: -4px -4px 8px;
+  padding: 6px 4px 10px;
+  background: var(--kss-sidebar-bg);
+  border-bottom: 1px solid color-mix(in srgb, var(--kss-sidebar-fg) 10%, transparent);
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 8px 12px;
+    color: var(--kss-sidebar-fg);
+    text-decoration: none;
+    img {
+      height: 40px;
+      width: auto;
+    }
+    strong {
+      display: block;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    small {
+      display: block;
+      font-size: 11px;
+      opacity: 0.6;
+    }
+  }
+}
+.kss-sites {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 4px;
+
+  &__label {
+    padding: 0 8px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--kss-sidebar-fg) 50%, transparent);
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: var(--kss-radius);
+    background: transparent;
+    color: color-mix(in srgb, var(--kss-sidebar-fg) 80%, transparent);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    &:hover {
+      background: color-mix(in srgb, var(--kss-sidebar-fg) 8%, transparent);
+    }
+    &.is-active {
+      color: var(--kss-sidebar-fg);
+      background: color-mix(in srgb, var(--kss-sidebar-fg) 13%, transparent);
+      border-color: color-mix(in srgb, var(--site, var(--kss-accent)) 70%, transparent);
+      box-shadow: inset 3px 0 0 var(--site, var(--kss-accent));
+    }
+  }
+  &__dot {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--site, #98a2b3);
+    &--all {
+      background: conic-gradient(#e5394a 0 50%, #3b82f6 50% 100%);
+    }
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    strong {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    small {
+      font-size: 11px;
+      opacity: 0.6;
+    }
+  }
+}
+
+/* oznaka aktivnog sajta u gornjoj traci */
+.kss-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+  padding: 5px 12px 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #101828;
+  background: color-mix(in srgb, var(--site) 12%, #fff);
+  border: 1px solid color-mix(in srgb, var(--site) 40%, #fff);
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--site);
+  }
+}
+
+/* ------------------------------------------------------------------ birač boje */
+.kss-color-field__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  input[type='color'] {
+    width: 48px;
+    height: 40px;
+    padding: 2px;
+    border-radius: var(--kss-radius);
+    border: 1px solid #d0d5dd;
+    background: #fff;
+    cursor: pointer;
+  }
+}
+.kss-color-field__hex {
+  max-width: 140px;
+  font-family: var(--font-mono);
+}
+.kss-color-field__error {
+  color: #d92d20;
+  font-size: 12px;
+}
+
+/* ------------------------------------------------------------------ prijava (podeljen ekran) */
+.login.template-minimal {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+  background: var(--kss-bg);
+}
+.login.template-minimal .template-minimal__wrap {
+  width: min(960px, 100%);
+  max-width: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  padding: 0;
+  background: #fff;
+  border-radius: var(--kss-radius-l);
+  box-shadow: 0 20px 50px rgba(16, 24, 40, 0.12), 0 2px 6px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+
+  .login__brand {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    padding: 48px 48px 8px;
+    display: flex;
+    justify-content: flex-start;
+    .kss-logo img {
+      height: 48px;
+    }
+  }
+  .login__form {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 8px 48px 48px;
+    align-self: start;
+  }
+  input[type='email'],
+  input[type='text'],
+  input[type='password'] {
+    background: #fff;
+    color: #111827;
+  }
+  .field-label {
+    color: #344054;
+  }
+  .form-submit .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.kss-login-brand {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: relative;
+  overflow: hidden;
+  padding: 48px 40px;
+  color: var(--kss-primary-contrast);
+  background: linear-gradient(160deg, var(--kss-primary), color-mix(in srgb, var(--kss-primary) 65%, #000));
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -70px;
+    bottom: -70px;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: var(--kss-accent);
+    opacity: 0.9;
+  }
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+  &__logo {
+    height: 72px;
+    width: auto;
+    margin-bottom: 28px;
+  }
+  h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: inherit;
+  }
+  p {
+    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.55;
+    opacity: 0.85;
+    color: inherit;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    font-size: 14px;
+    li {
+      position: relative;
+      padding-left: 26px;
+      color: inherit;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--kss-accent);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--kss-primary-contrast) 18%, transparent);
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .login.template-minimal .template-minimal__wrap {
+    grid-template-columns: 1fr;
+    .login__brand,
+    .login__form {
+      grid-column: 1;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .login__brand {
+      grid-row: 2;
+    }
+    .login__form {
+      grid-row: 3;
+    }
+  }
+  .kss-login-brand {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 28px 24px;
+    ul {
+      display: none;
+    }
+  }
+}
